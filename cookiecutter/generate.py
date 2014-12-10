@@ -178,7 +178,20 @@ def generate_files(repo_dir, context=None, output_dir='.'):
         run_hook('pre_gen_project', project_dir, context)
 
     with work_in(template_dir):
-        env = Environment(keep_trailing_newline=True)
+
+        block_start_string = "{%cc"
+        block_end_string = "cc%}"
+        variable_start_string = "{{cc"
+        variable_end_string = "cc}}"
+
+        env = Environment(
+            keep_trailing_newline=True,
+            block_start_string=block_start_string,
+            block_end_string=block_end_string,
+            variable_end_string=variable_end_string,
+            variable_start_string=variable_start_string
+        )
+
         env.loader = FileSystemLoader('.')
 
         for root, dirs, files in os.walk('.'):

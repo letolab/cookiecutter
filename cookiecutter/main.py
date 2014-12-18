@@ -55,7 +55,7 @@ def expand_abbreviations(input_dir, config_dict):
     return input_dir
 
 
-def cookiecutter(input_dir, checkout=None, no_input=False, extra_context=None, output_dir=None):
+def cookiecutter(input_dir, checkout=None, no_input=False, extra_context=None):
     """
     API equivalent to using Cookiecutter at the command line.
 
@@ -100,7 +100,7 @@ def cookiecutter(input_dir, checkout=None, no_input=False, extra_context=None, o
 
     # Create project from local context and project template.
     generate_files(
-        repo_dir=output_dir,
+        repo_dir=repo_dir,
         context=context
     )
 

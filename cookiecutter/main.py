@@ -55,7 +55,7 @@ def expand_abbreviations(input_dir, config_dict):
     return input_dir
 
 
-def cookiecutter(input_dir, checkout=None, no_input=False, extra_context=None):
+def cookiecutter(input_dir, checkout=None, no_input=False, extra_context=None, output_dir=None):
     """
     API equivalent to using Cookiecutter at the command line.
 
@@ -70,7 +70,6 @@ def cookiecutter(input_dir, checkout=None, no_input=False, extra_context=None):
     # Get user config from ~/.cookiecutterrc or equivalent
     # If no config file, sensible defaults from config.DEFAULT_CONFIG are used
     config_dict = get_user_config()
-
     input_dir = expand_abbreviations(input_dir, config_dict)
 
     # TODO: find a better way to tell if it's a repo URL
@@ -101,7 +100,7 @@ def cookiecutter(input_dir, checkout=None, no_input=False, extra_context=None):
 
     # Create project from local context and project template.
     generate_files(
-        repo_dir=repo_dir,
+        repo_dir=output_dir,
         context=context
     )
 
